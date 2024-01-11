@@ -1,12 +1,14 @@
 {
   "devDependencies": {
     "cypress": "^13.6.1",
+    "cypress-file-upload": "^5.0.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^19.2.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "@types/chance": "^1.1.6",
     "chance": "^1.1.11"
   }
 }

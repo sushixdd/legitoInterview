@@ -1,6 +1,2 @@
-Cypress.Commands.add("visitBaseUrl", () => {
-  // not a fan of this intercept, but could not find a better one
-  cy.intercept("GET", "/js/login.js").as("getLogin");
-  cy.visit(Cypress.env("baseUrl"));
-  cy.wait("@getLogin");
-});
+// I'm not sure if I'm even going to use commands. I made heavy use of commands in my secondary project.
+// In this project, I chose to try pages because I have little to no experience with this way yet
