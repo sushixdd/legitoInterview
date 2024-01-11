@@ -9,7 +9,6 @@ export const CancelButton = () => {
 export const Error = () => {
   return cy.get("#error");
 };
-
 export const FirstName = () => {
   return cy.get("#firstName");
 };
