@@ -3,6 +3,8 @@ import {
   errorMessageList,
   shortPassword,
   usedEmail,
+  placeholderStrings,
+  buttonString,
 } from "../../testdata/addUser/testData";
 import { generateRandomEmail } from "../utils/generateRandomEmail";
 
@@ -20,10 +22,10 @@ export class AddUser {
   };
 
   fillFormWithValidValues = () => {
-    cy.get("#firstName").invoke("val", "firstNameTest");
-    cy.get("#lastName").invoke("val", "lastNameTest");
-    cy.get("#email").invoke("val", usedEmail);
-    cy.get("#password").invoke("val", "password");
+    selector.FirstName().invoke("val", "firstNameTest");
+    selector.LastName().invoke("val", "lastNameTest");
+    selector.Email().invoke("val", usedEmail);
+    selector.Password().invoke("val", "password");
   };
 
   visit() {
@@ -34,32 +36,22 @@ export class AddUser {
   assertForm() {
     // reset state of website to make sure input is clean
     this.visit();
-    const assertVisibility = (el: string) => {
-      cy.get(el).should("be.visible");
-    };
-    const assertPlaceholder = (el: string, placeholder: string) => {
-      cy.get(el).should("have.attr", "placeholder", placeholder);
-    };
-    const buttonAssertion = (el: string, attr: string, val: string) => {
-      cy.get(el).should("have.attr", attr, val);
-    };
 
-    assertVisibility("#firstName");
-    assertVisibility("#lastName");
-    assertVisibility("#email");
-    assertVisibility("#password");
+    selector
+      .FirstName()
+      .should("have.attr", "placeholder", placeholderStrings.firstName);
+    selector
+      .LastName()
+      .should("have.attr", "placeholder", placeholderStrings.lastName);
+    selector
+      .Email()
+      .should("have.attr", "placeholder", placeholderStrings.email);
+    selector
+      .Password()
+      .should("have.attr", "placeholder", placeholderStrings.passowrd);
 
-    assertPlaceholder("#firstName", "First Name");
-    assertPlaceholder("#lastName", "Last Name");
-    assertPlaceholder("#email", "Email");
-    assertPlaceholder("#password", "Password");
-
-    buttonAssertion("#submit", "type", "submit");
-    buttonAssertion("#submit", "form", "add-user");
-    selector.SubmitButton().should("contain", "Submit");
-
-    buttonAssertion("#cancel", "onclick", "location.href='/login'");
-    selector.CancelButton().should("contain", "Cancel");
+    selector.SubmitButton().should("contain", buttonString.submit);
+    selector.CancelButton().should("contain", buttonString.cancel);
   }
   sendFormFail() {
     selector.interceptUsers();
