@@ -6,6 +6,7 @@ declare global {
        * @example cy.dataCy('greeting')
        */
       login(username, pw): Chainable<JQuery<HTMLElement>>;
+      createRecord(authToken): Chainable<JQuery<HTMLElement>>;
     }
   }
 }

@@ -21,3 +21,20 @@ Cypress.Commands.add("login", (username: string, pw: string) => {
     cy.setCookie("token", token);
   });
 });
+
+Cypress.Commands.add("createRecord", (authToken: string) => {
+  cy.request({
+    method: "POST",
+    url: "https://thinking-tester-contact-list.herokuapp.com/contacts",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken,
+    },
+    body: {
+      firstName: "John",
+      lastName: "Doe",
+    },
+  }).then((resp) => {
+    return resp.body._id;
+  });
+});
